@@ -33,7 +33,6 @@
  * Fields
  */
 
-
 $GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['id'] = array('', '');
 $GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['tstamp'] = array('Date d\'inscription', '');
 $GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['id_member'] = array('User', '');

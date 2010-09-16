@@ -32,7 +32,8 @@
 /**
  * Miscellaneous
  */
-$GLOBALS['TL_LANG']['MSC'][''] = '';
+
+$GLOBALS['TL_LANG']['tl_module']['xkn_event_sub_id'] = array('Sélectionnez un évènement à associer', '');
 
 $GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['subscribe_form_header'] = 'Formulaire d\'inscription';
 $GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['subscribe_bt'] = 'S\'inscrire';
