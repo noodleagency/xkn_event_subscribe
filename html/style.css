@@ -1,0 +1,28 @@
+@CHARSET "ISO-8859-1";
+
+.pagination{
+    margin: 15px 0 0 0;
+    font-size: 12px;
+}
+
+.pagination ul{
+    list-style-type: none;   
+}
+
+.pagination li{
+    float: left;    
+}
+
+.pagination li a{
+    padding: 0 8px;
+    color:#cc0000;
+    font-family: arial;
+}
+
+.pagination p{
+    display: none;
+}
+
+.pagination .current{
+    padding: 0 8px;
+}

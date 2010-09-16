@@ -1,0 +1,1 @@
+xkn_events_subscribe.tpl
