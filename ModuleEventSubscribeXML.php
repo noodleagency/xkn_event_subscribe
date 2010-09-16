@@ -111,8 +111,8 @@ class ModuleEventSubscribeXML extends Module {
 		$this->getEventSubscription($this->xkn_event_sub_id);
 		
 		$objTemplate = new FrontendTemplate($this->strTemplate, $this->strContentType);//, 
-		$objTemplate->id_event = $this->id_event;
-		$tmp_data['id_event'] = $this->id_event; 
+		$objTemplate->id_event = $this->xkn_event_sub_id;
+		$tmp_data['id_event'] = $this->xkn_event_sub_id; 
 		$tmp_data['sub'] = $this->sub; 
 		$objTemplate->setData($tmp_data);
 

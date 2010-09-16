@@ -1,4 +1,4 @@
-
+<!-- Inscription Mondial de l'auto 2010 -->
 <event id="<?php echo $this->id_event;?>">
 	<users>
 <?php
