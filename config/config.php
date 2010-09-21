@@ -91,6 +91,7 @@ array_insert($GLOBALS['BE_MOD']['content'], 9, array
        'xkn_event' => array
        (
            'xkn_event_subscribe' 		=> 'ModuleEventSubscribeForm',
+           'xkn_event_subscribe_active' 	=> 'ModuleEventSubscribeActive',
            'xkn_event_subscribe_reader' 	=> 'ModuleEventSubscribeSEATForm',
            'xkn_event_subscribe_list' 		=> 'ModuleEventSubscribeXML'
        )

@@ -57,6 +57,7 @@ class EventSubscribe extends Controller
 	public function __construct($id) {
 		$this->import("Database");	
         $this->import('FrontendUser', 'User');
+//        print_r();
 		parent::__construct();
 		$this->xkn_event_sub_id=$id;
 	}
@@ -83,7 +84,7 @@ class EventSubscribe extends Controller
 	 */
 	public function loadForm() {
 		// recup infos de l'event
-
+		
 		$objGallery = $this->Database->prepare("SELECT * FROM tl_calendar_events WHERE id=?")
 										 ->limit(1)
 										 ->execute($this->xkn_event_sub_id);

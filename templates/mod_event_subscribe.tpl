@@ -1,1 +1,0 @@
-mod_events_subscribe.tpl

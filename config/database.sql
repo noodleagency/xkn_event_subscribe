@@ -20,11 +20,12 @@ CREATE TABLE `tl_calendar_events_subscribe` (
   `sorting` int(10) unsigned NOT NULL default '0',
   `tstamp` int(10) unsigned NOT NULL default '0',
   `id_member` int(10) unsigned NOT NULL default '0',
-  `ces_referer` varchar(10) NOT NULL default 'CLUB',
+  `ces_referer` varchar(255) NOT NULL default 'CLUB',
   `ces_present` int(10) unsigned NOT NULL default '0',
   `ces_date` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
-  KEY `pid` (`pid`)
+  KEY `pid` (`pid`),
+  KEY `id_member` (`id_member`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 

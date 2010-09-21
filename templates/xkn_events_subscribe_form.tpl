@@ -1,5 +1,5 @@
 <?php
-//print_r($this);
+
 ?>
 
 <div class="introMondial">
@@ -31,6 +31,7 @@ for($i=0; $i<count($this->sub_date); $i++) {
 }
 ?>
 	        		</select></p>
+	        	<input type="hidden" value="{{env::page_title}}" id="from" name="from" />	
 	        	<input type="hidden" value="<?php echo $this->id;?>" id="id_event" name="id_event" />	
 				<input type="submit" class="submit" name="subformbt<?php echo $this->id; ?>" id="subformbt<?php echo $this->id; ?>" />
 			</form>
@@ -64,7 +65,8 @@ var sendForm = function(e) {
 ajaxDispatcher.refresh = function (){
 	/* Get the form values */
 	var subdate = $('subdate').value;	
-	jsparams = { 'subdate': subdate, 'event': <?php echo $this->id;?>, 'lg': '<?php echo $GLOBALS['TL_LANGUAGE'];?>'};
+	var from = $('from').value;	
+	jsparams = { 'from': from, 'subdate': subdate, 'event': <?php echo $this->id;?>, 'lg': '<?php echo $GLOBALS['TL_LANGUAGE'];?>'};
 	ajaxDispatcher.request(this, 'subform<?php echo $this->id;?>', 'ModuleEventSubscribe', 'eventSubscribe', 'YToyOntzOjY6Im1vZF9pZCI7czoyOiI0NiI7czo0OiJsYW5nIjtzOjI6ImZyIjt9', jsparams);
 	
 	return true;
