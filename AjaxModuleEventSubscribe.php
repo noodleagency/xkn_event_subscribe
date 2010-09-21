@@ -120,7 +120,7 @@ class AjaxModuleEventSubscribe extends Controller
 	 */
 	public function eventSubscribe($_params) {	
 		global $objPage;
-		
+
 		// recup des infos du client
 		$this->import('FrontendUser', 'User');
 		$this->import('String');
@@ -150,9 +150,9 @@ class AjaxModuleEventSubscribe extends Controller
 		// Places libres & pas inscrit -> inscription
 //		$content = 'User '.$this->User->id.' inscrit a l\'event '.$_params['event'].' le '.date('d/m/Y', $_params['subdate']);
 		$content = sprintf($GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['subdone'] , date('d/m/Y', $_params['subdate']));
-		$sql = "INSERT INTO tl_calendar_events_subscribe (tstamp, id_member, pid, ces_date) VALUES (?, ?, ?, ?)";
+		$sql = "INSERT INTO tl_calendar_events_subscribe (tstamp, id_member, pid, ces_date, ces_referer) VALUES (?, ?, ?, ?, ?)";
 		$_module = $this->Database->prepare($sql)
-								->execute(time(), $this->User->id, $_params['event'], $_params['subdate'] );
+								->execute(time(), $this->User->id, $_params['event'], $_params['subdate'], $_params['from']  );
 
 		return array('status' => 'OK', 'content' => $content , 'postAction' => $postAction) ;
 		

@@ -241,14 +241,25 @@ class ModuleEventSubscribeXML extends Module {
 	public function getEventSubscription($id=0, $start=0, $length=20) {
 		
 		$this->sub = array();
-		$sql = 'SELECT ces.*, m.firstname, m.lastname, m.email ';
+		$sql = 'SELECT ces.*, m.firstname, m.lastname, m.email, m.groups ';
 		$sql .= 'FROM tl_calendar_events_subscribe AS ces ';
 		$sql .= 'LEFT JOIN tl_member AS m ON ces.id_member=m.id ';
+//		$sql .= 'LEFT JOIN tl_member_group AS mg ON m.groups=mg.id ';
 		$sql .= 'WHERE ces.pid=? ';
 		$sql .= 'ORDER BY ces_date ASC ';
 		$sql .= 'LIMIT ?, ? ';
+//		echo $sql; 
 		$objEvt = $this->Database->prepare($sql)->execute($id, $start, $length);
 		while($objEvt->next()) {
+			$groups = deserialize($objEvt->groups);
+			$grp_val = array();
+			for($i=0; $i<count($groups);$i++) {
+				$q = 'SELECT name FROM tl_member_group WHERE id='.$groups[$i];
+				$objGrp = $this->Database->prepare($q)->execute();
+				while($objGrp->next()) {
+					$grp_val[] = $objGrp->name;
+				}
+			}
 			$tmp = array();
 			$tmp['id'] = $objEvt->id;
 			$tmp['pid'] = $objEvt->pid;
@@ -256,6 +267,7 @@ class ModuleEventSubscribeXML extends Module {
 			$tmp['firstname'] = $objEvt->firstname;
 			$tmp['lastname'] = $objEvt->lastname;
 			$tmp['email'] = $objEvt->email;
+			$tmp['group'] = $grp_val;
 			$tmp['date'] = $objEvt->ces_date;
 			$tmp['sub_date'] = $objEvt->tstamp;
 			$tmp['referer'] = $objEvt->ces_referer;
