@@ -21,12 +21,12 @@
 				Prénom : <b><?php echo $this->firstname;?></b></p>
 
 				<p><label>Sélectionnez la date de votre passage au Mondial</label>
-    				<select name="subdate" id="subdate" style="text-align:right;">
-    					<option value="0" style="text-align:right;"><?php echo $this->subselect_label;?></option>
+    				<select name="subdate" id="subdate" style="text-align:center;">
+    					<option value="0" style="text-align:center;"><?php echo $this->subselect_label;?></option>
 <?php
 for($i=0; $i<count($this->sub_date); $i++) {
 ?>
-	        					<option style="text-align:right;" value="<?php echo $this->sub_date[$i]['stamp'];?>"><?php echo $this->sub_date[$i]['label'];?></option>
+	        					<option style="text-align:center;" value="<?php echo $this->sub_date[$i]['stamp'];?>"><?php echo $this->sub_date[$i]['label'];?></option>
 <?php
 }
 ?>
