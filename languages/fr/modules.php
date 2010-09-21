@@ -33,8 +33,9 @@
  * Back end modules
  */
 $GLOBALS['TL_LANG']['MOD']['xkn_event_subscribe'] = array('Formulaire d\'inscription aux évènements', '' );
-$GLOBALS['TL_LANG']['MOD']['xkn_event_subscribe_list'] = array('Liste des inscrits à un évènement', '' );
+$GLOBALS['TL_LANG']['MOD']['xkn_event_subscribe_list'] = array('Liste des inscrits à un évènement (XML)', '' );
 $GLOBALS['TL_LANG']['MOD']['xkn_event_subscribe_reader'] = array('Formulaire SEAT d\'inscription aux évènements ', '' );
+$GLOBALS['TL_LANG']['MOD']['xkn_event_subscribe_active'] = array('Formulaire SEAT de présence aux évènements ', '' );
 
 
 /**
@@ -44,6 +45,7 @@ $GLOBALS['TL_LANG']['MOD']['xkn_event_subscribe_reader'] = array('Formulaire SEA
 $GLOBALS['TL_LANG']['FMD']['xkn_event'] = array('Inscriptions aux évènements', '');
 $GLOBALS['TL_LANG']['FMD']['xkn_event_subscribe'] = array('Formulaire d\'inscription aux évènements', '');
 $GLOBALS['TL_LANG']['FMD']['xkn_event_subscribe_reader'] = array('Formulaire SEAT d\'inscription aux évènements', '');
-$GLOBALS['TL_LANG']['FMD']['xkn_event_subscribe_list'] = array('Liste des inscrits à un évènement', '');
+$GLOBALS['TL_LANG']['FMD']['xkn_event_subscribe_active'] = array('Formulaire SEAT de présence aux évènements', '');
+$GLOBALS['TL_LANG']['FMD']['xkn_event_subscribe_list'] = array('Liste des inscrits à un évènement (XML)', '');
 
 ?>

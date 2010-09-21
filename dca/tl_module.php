@@ -33,7 +33,7 @@
 $GLOBALS['TL_DCA']['tl_module']['palettes']['xkn_event_subscribe']    = '{title_legend},name,headline,type;{config_legend},xkn_event_sub_id;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['xkn_event_subscribe_list']    = '{title_legend},name,headline,type;{config_legend},xkn_event_sub_id;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 $GLOBALS['TL_DCA']['tl_module']['palettes']['xkn_event_subscribe_reader']    = '{title_legend},name,headline,type;{config_legend},xkn_event_sub_id;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-
+$GLOBALS['TL_DCA']['tl_module']['palettes']['xkn_event_subscribe_active']    = '{title_legend},name,headline,type;{config_legend},xkn_event_sub_id;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 /**
  * Add fields to tl_module
  */

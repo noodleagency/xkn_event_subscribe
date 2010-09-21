@@ -24,7 +24,8 @@ CREATE TABLE `tl_calendar_events_subscribe` (
   `ces_present` int(10) unsigned NOT NULL default '0',
   `ces_date` int(10) unsigned NOT NULL default '0',
   PRIMARY KEY  (`id`),
-  KEY `pid` (`pid`)
+  KEY `pid` (`pid`),
+  KEY `id_member` (`id_member`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 

@@ -30,13 +30,13 @@
 
 
 /**
- * Class ModuleEventSubscribeSEATForm 
+ * Class ModuleEventSubscribeActive
  *
  * @copyright  Guillaume LEROY 
  * @author     Guillaume LEROY zegnoo@zegnoo.net 
  * @package    Controller
  */
-class ModuleEventSubscribeSEATForm extends Module {
+class ModuleEventSubscribeActive extends Module {
 
 	/**
 	 * Template
@@ -48,7 +48,7 @@ class ModuleEventSubscribeSEATForm extends Module {
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = 'xkn_events_subscribe_seatform';
+	protected $strTemplate = 'xkn_events_subscribe_active';
 
 	/**
 	 * Format de sortie
@@ -77,7 +77,6 @@ class ModuleEventSubscribeSEATForm extends Module {
 		$this->Import('Config');
 		$this->Import('Input');
 		$this->Import('Database');
-//		print_r($this);
 		parent::__construct($cfg);
 	}
 	
@@ -92,47 +91,31 @@ class ModuleEventSubscribeSEATForm extends Module {
 	 * Generate module
 	 */
 	public function generate() {
-		// recuperation des parametres
-		$id_event = $this->xkn_event_sub_id;
 		$id = $this->Input->get('id');
+		$key = $this->Input->get('key');
 		$present = $this->Input->get('present');
-		$date = strtotime($this->Input->get('date'));
-		$tmp_data=array();
-		if(!$id || !$date) {
+		if(!$id || !$key || ($present!=0 && $present!=1)) {
 			// pas de parametres
 			$tmp_data['result'] = -1;
 		} else {
-			// Test si User existe
-			$sql = 'SELECT id ';
-			$sql .= 'FROM tl_member ';
-			$sql .= 'WHERE id=? ';
-			$usrObj = $this->Database->prepare($sql)->execute($id);
-			if($usrObj->numRows==0) {
-				// Cet User n'existe pas
-				$tmp_data['result'] = 0;
+			$sql = 'SELECT ces.id ';
+			$sql .= 'FROM `tl_calendar_events_subscribe` AS ces ';
+			$sql .= 'LEFT JOIN `tl_member` AS m ON ces.id_member=m.id ';
+			$sql .= 'WHERE ces.id_member=? ';
+			$sql .= 'AND MD5(CONCAT(email, \'XXX\', ces.ces_date))=? ';
+			$usrObj = $this->Database->prepare($sql)->execute($id, $key);
+			
+			$tmp_data=array();
+			if($usrObj->numRows==1) {
+				// si key ok > changement statut
+				$usrData = $usrObj->fetchAssoc();
+				$q = 'UPDATE tl_calendar_events_subscribe SET ces_present=? WHERE id=? ';
+				$usrSave = $this->Database->prepare($q)->execute($present, $usrData['id']);
+				$tmp_data['result'] = $usrSave->__get('affectedRows');
 			} else {
-				// User existe
-				// Test si User deja inscrit a cet evenement et a cette date
-				$sql = 'SELECT ces.id ';
-				$sql .= 'FROM `tl_calendar_events_subscribe` AS ces ';
-				$sql .= 'WHERE ces.id_member=? ';
-				$sql .= 'AND ces.ces_date=? ';
-				$usrObj = $this->Database->prepare($sql)->execute($id, $date);
-				if($usrObj->numRows==1) {
-					// deja inscrit
-					$tmp_data['result'] = 0;
-				} else {
-					// ajout 
-					$q = 'INSERT INTO tl_calendar_events_subscribe ';
-					$q .= '(tstamp, id_member, pid, ces_date, ces_referer) ';
-					$q .= 'VALUES ';
-					$q .= '( ?, ?, ?, ?, ?) ';
-					$usrSave = $this->Database->prepare($q)->execute(time(), $id, $id_event, $date, 'SEAT');
-					$tmp_data['result'] = ($usrSave->__get('insertId')>0) ? 1 : 0;
-				}
+				$tmp_data['result'] = 0;
 			}
-		}		
-		// generation du template
+		}
 		$objTemplate = new FrontendTemplate($this->strTemplate, $this->strContentType);//, 
 		$tmp_data['id_event'] = $this->xkn_event_sub_id;
 		$objTemplate->setData($tmp_data);
