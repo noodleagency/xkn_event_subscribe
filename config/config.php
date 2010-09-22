@@ -61,7 +61,7 @@ array_insert($GLOBALS['BE_MOD']['content'], 9, array
 	'xkn_event_subscribe' => array
 	(
 //		'callback'	 => 'EventSubscribe',
-		'tables'     => array('tl_calendar_events_subscribe'),
+		'tables'     => array('tl_calendar_events'),
 		'icon'       => 'system/modules/xkn_event_subscribe/html/imgs/subscribe.png'
 	)
 ));

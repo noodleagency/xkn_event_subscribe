@@ -47,7 +47,7 @@ $GLOBALS['TL_DCA']['tl_calendar_events_subscribe'] = array
 	(
 		'sorting' => array
 		(
-			'mode'                    => 3,
+			'mode'                    => 5,
 			'fields'                  => array('id', 'id_member', 'ces_date', 'ces_present' ),
 			'headerFields'			  => array('id', 'id_member', 'ces_date', 'ces_present' ),
 			'panelLayout'			  => 'sort,filter;search,limit'
