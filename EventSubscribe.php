@@ -54,10 +54,10 @@ class EventSubscribe extends Controller
 	/**
 	 * constructeur
 	 */
-	public function __construct($id) {
+	public function __construct($id=0, $template='xkn_events_subscribe_form') {
 		$this->import("Database");	
         $this->import('FrontendUser', 'User');
-//        print_r();
+        $this->strTemplate = $template;
 		parent::__construct();
 		$this->xkn_event_sub_id=$id;
 	}

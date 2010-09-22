@@ -32,10 +32,10 @@
  */
 //$GLOBALS['TL_DCA']['tl_module']['palettes']['eventsattend'] = &$GLOBALS['TL_DCA']['tl_module']['palettes']['eventreader'];
 
-$GLOBALS['TL_DCA']['tl_module']['palettes']['xkn_event_subscribe']    = '{title_legend},name,headline,type;{config_legend},xkn_event_sub_id;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['xkn_event_subscribe_list']    = '{title_legend},name,headline,type;{config_legend},xkn_event_sub_id;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['xkn_event_subscribe_reader']    = '{title_legend},name,headline,type;{config_legend},xkn_event_sub_id;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
-$GLOBALS['TL_DCA']['tl_module']['palettes']['xkn_event_subscribe_active']    = '{title_legend},name,headline,type;{config_legend},xkn_event_sub_id;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['xkn_event_subscribe']    = '{title_legend},name,headline,type;{config_legend},xkn_event_sub_id,xkn_template;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['xkn_event_subscribe_list']    = '{title_legend},name,headline,type;{config_legend},xkn_event_sub_id,xkn_template;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['xkn_event_subscribe_reader']    = '{title_legend},name,headline,type;{config_legend},xkn_event_sub_id,xkn_template;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
+$GLOBALS['TL_DCA']['tl_module']['palettes']['xkn_event_subscribe_active']    = '{title_legend},name,headline,type;{config_legend},xkn_event_sub_id,xkn_template;{redirect_legend},jumpTo;{protected_legend:hide},protected;{expert_legend:hide},guests,cssID,space';
 /**
  * Add fields to tl_module
  */
@@ -45,6 +45,14 @@ $GLOBALS['TL_DCA']['tl_module']['fields']['xkn_event_sub_id'] = array
 	'exclude'                 => true,
 	'inputType'               => 'select',
 	'options_callback'        => array('tl_module_events_subscribe', 'getEvents'),
+	'eval'                    => array('mandatory'=>true, 'multiple'=>false)
+);
+$GLOBALS['TL_DCA']['tl_module']['fields']['xkn_template'] = array
+(
+	'label'                   => &$GLOBALS['TL_LANG']['tl_module']['xkn_template'],
+	'exclude'                 => true,
+	'inputType'               => 'select',
+	'options'        		  => $this->getTemplateGroup('xkn_events_subscribe'),
 	'eval'                    => array('mandatory'=>true, 'multiple'=>false)
 );
 

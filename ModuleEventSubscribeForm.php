@@ -52,6 +52,8 @@ class ModuleEventSubscribeForm extends Module {
 		$this->import('FrontendUser', 'User');
 		$this->import("Database");
 		parent::__construct($cfg);
+
+
 		$this->xkn_event_sub_id = $this->arrData['xkn_event_sub_id'];
 	}
 
@@ -65,10 +67,10 @@ class ModuleEventSubscribeForm extends Module {
 	/**
 	 * Generate module
 	 */
-	public function generate() {
+	public function generate() {		
 		$GLOBALS['TL_HEAD'][] = '<script type="text/javascript" src="system/modules/xkn_ajax/js/ajaxDispatcher.js"></script>';
 		// recup id de l'event
-		$tmp = new EventSubscribe($this->xkn_event_sub_id);
+		$tmp = new EventSubscribe($this->xkn_event_sub_id, $this->xkn_template);
 //		print_r($tmp);
 		return $tmp->loadForm();
 	}
