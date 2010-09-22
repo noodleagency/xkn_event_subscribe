@@ -34,11 +34,9 @@
  * @author     Erwan Ripoll 
  * @package    Controller
  */
-class AjaxModuleEventSubscribe extends Controller
-{
+class AjaxModuleEventSubscribe extends Controller {
 
-	public function __construct()
-	{
+	public function __construct() {
 		$this->import('FrontendUser', 'User');
 
  		if($GLOBALS['XKN_MODULES']['XKN_JOURNAL']['installed']) { $this->import('Journal'); $this->import('FrontendUser', 'User');}		
@@ -125,13 +123,19 @@ class AjaxModuleEventSubscribe extends Controller
 		$this->import('FrontendUser', 'User');
 		$this->import('String');
 		
+		// recup du template pour le message de retour
+		$objTemplate = new FrontendTemplate('xkn_events_subscribe_return');
+		$tmp_data=array();
+
 		// chargement des fichiers de traduction
 		$this->loadLanguageFile('default', $this->Input->get('fr'));
 		$postAction='';
 		
 		if($this->subscribed($_params['event'], $_params['subdate'])) {			
 			// verif si deja inscrit
-			$content = "Msg d'erreur : deja inscrit";
+			$tmp_data['data'] = "Msg d'erreur : deja inscrit";
+			$objTemplate->setData($tmp_data);
+			$content = $objTemplate->parse();		
 			return array('status' => 'OK', 'content' => $content , 'postAction' => $postAction) ;
 		}
 		
@@ -143,34 +147,23 @@ class AjaxModuleEventSubscribe extends Controller
 
 		if($num_usr>=$max_usr) {
 			// Si plus de places libres
-			$content = "Msg d'erreur : Plus de place";
+			$tmp_data['data'] = "Msg d'erreur : Plus de place";
+			$objTemplate->setData($tmp_data);
+			$content = $objTemplate->parse();
 			return array('status' => 'OK', 'content' => $content , 'postAction' => $postAction) ;
 		}
 		
 		// Places libres & pas inscrit -> inscription
-//		$content = 'User '.$this->User->id.' inscrit a l\'event '.$_params['event'].' le '.date('d/m/Y', $_params['subdate']);
-		$content = sprintf($GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['subdone'] , date('d/m/Y', $_params['subdate']));
 		$sql = "INSERT INTO tl_calendar_events_subscribe (tstamp, id_member, pid, ces_date, ces_referer) VALUES (?, ?, ?, ?, ?)";
 		$_module = $this->Database->prepare($sql)
-								->execute(time(), $this->User->id, $_params['event'], $_params['subdate'], $_params['from']  );
-
+							->execute(time(), $this->User->id, $_params['event'], $_params['subdate'], $_params['from']  );
+		$tmp_data['data'] = sprintf($GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['subdone'] , date('d/m/Y', $_params['subdate']));
+		$objTemplate->setData($tmp_data);
+		$content = $objTemplate->parse();
 		return array('status' => 'OK', 'content' => $content , 'postAction' => $postAction) ;
 		
 	}
-	
-	public function logDoc($_params)
-	{
-		// Log in Journal if extension is installed
-  		if($GLOBALS['XKN_MODULES']['XKN_JOURNAL']['installed'] && !$isFront)
-  		{
- 			$this->import('Journal'); $this->import('FrontendUser', 'User');
-			$model = $_params['model'];
-			$doc = $_params['doc'];
- 			$this->Journal->logAction($this->User->id, 'CATALOG', 'VIEWED', 'MANUEL', $model, $doc);	
-		}		
-		return array('status' => 'OK', 'content' => '' , 'postAction' => '') ;
-	}
-	
-}
+
+} // end class
 
 ?>
