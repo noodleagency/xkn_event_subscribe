@@ -74,6 +74,7 @@ class ModuleEventSubscribeSEATForm extends Module {
 	 * Compile module
 	 */
 	public function __construct($cfg) {
+		
 		$this->Import('Config');
 		$this->Import('Input');
 		$this->Import('Database');
@@ -98,10 +99,13 @@ class ModuleEventSubscribeSEATForm extends Module {
 		$present = $this->Input->get('present');
 		$date = strtotime($this->Input->get('date'));
 		$tmp_data=array();
-		if(!$id || !$date) {
+		if(!$id || !$date ) {
 			// pas de parametres
 			$tmp_data['result'] = -1;
 		} else {
+			if($present!=0 && $present!=1) {
+				$present=1;
+			}
 			// Test si User existe
 			$sql = 'SELECT id ';
 			$sql .= 'FROM tl_member ';
@@ -124,10 +128,10 @@ class ModuleEventSubscribeSEATForm extends Module {
 				} else {
 					// ajout 
 					$q = 'INSERT INTO tl_calendar_events_subscribe ';
-					$q .= '(tstamp, id_member, pid, ces_date, ces_referer) ';
+					$q .= '(tstamp, id_member, pid, ces_date, ces_referer, ces_present) ';
 					$q .= 'VALUES ';
 					$q .= '( ?, ?, ?, ?, ?) ';
-					$usrSave = $this->Database->prepare($q)->execute(time(), $id, $id_event, $date, 'SEAT');
+					$usrSave = $this->Database->prepare($q)->execute(time(), $id, $id_event, $date, 'SEAT', $present);
 					$tmp_data['result'] = ($usrSave->__get('insertId')>0) ? 1 : 0;
 				}
 			}

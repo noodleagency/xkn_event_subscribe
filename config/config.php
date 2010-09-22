@@ -56,15 +56,17 @@
  * 
  * Use function array_insert() to modify an existing modules array.
  */
-array_insert($GLOBALS['BE_MOD']['content'], 9, array
+// ???
+$GLOBALS['BE_MOD']['content']['xkn_event_subscribe']['tables']= array('tl_calendar_events', 'tl_calendar_events_subscribe');
+/*array_insert($GLOBALS['BE_MOD']['content'], 9, array
 (
 	'xkn_event_subscribe' => array
 	(
-//		'callback'	 => 'EventSubscribe',
-		'tables'     => array('tl_calendar_events'),
+//		'callback'	 => 'ModuleEventSubscribe',
+		'tables'     => array('tl_calendar_events', 'tl_calendar_events_subscribe'),
 		'icon'       => 'system/modules/xkn_event_subscribe/html/imgs/subscribe.png'
 	)
-));
+));*/
 
 
 /**

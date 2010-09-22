@@ -43,14 +43,13 @@ class ModuleEventSubscribe extends BackendModule
 	 * Template
 	 * @var string
 	 */
-	protected $strTemplate = '';
+	protected $strTemplate = 'xkn_events_subscribe_list';
 
 	/**
 	 * constructeur
 	 */
-	public function __construct()
-	{	
-		echo get_class($this)."::__construct";
+	public function __construct() {	
+//		echo get_class($this)."::__construct";
 	}
 	
 	/**
@@ -64,9 +63,11 @@ class ModuleEventSubscribe extends BackendModule
 	/**
 	 * Generate module
 	 */
-	public function generate()
-	{	
-		echo get_class($this)."::generate";
+	public function generate() {
+		$this->Import('Input');	
+		echo $this->Input->get('id').' '.get_class($this)."::generate";
+		print_r($this);
+		
 	}
 	
 	public function getEventList($dca) {

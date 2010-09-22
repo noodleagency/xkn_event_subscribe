@@ -84,6 +84,7 @@ class ModuleEventSubscribeXML extends Module {
 	 * Compile module
 	 */
 	public function __construct($cfg) {
+		
 		$this->Import('Config');
 		$this->Import('Input');
 		$this->Import('Database');

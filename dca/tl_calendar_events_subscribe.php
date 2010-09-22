@@ -47,10 +47,12 @@ $GLOBALS['TL_DCA']['tl_calendar_events_subscribe'] = array
 	(
 		'sorting' => array
 		(
-			'mode'                    => 5,
-			'fields'                  => array('id', 'id_member', 'ces_date', 'ces_present' ),
-			'headerFields'			  => array('id', 'id_member', 'ces_date', 'ces_present' ),
-			'panelLayout'			  => 'sort,filter;search,limit'
+			'mode'                    => 4,
+			'flag'                    => 10,
+			'fields'                  => array('ces_date', 'pid', 'id', 'id_member', 'ces_present' ),
+			'headerFields'			  => array('id', 'title', 'startDate', 'endDate'),
+			'panelLayout'			  => 'sort,filter;search,limit',
+			'child_record_callback'   => array('tl_calendar_events_subscribe', 'listSubscriber')
 		),
 		'label' => array
 		(
@@ -69,13 +71,13 @@ $GLOBALS['TL_DCA']['tl_calendar_events_subscribe'] = array
 		),
 		'operations' => array
 		(
-			'edit' => array
+/*			'edit' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['edit'],
 				'href'                => 'act=edit',
 				'icon'                => 'edit.gif'
 			),
-/*			'copy' => array
+			'copy' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['copy'],
 				'href'                => 'act=copy',
@@ -118,7 +120,7 @@ $GLOBALS['TL_DCA']['tl_calendar_events_subscribe'] = array
 			'label'                   => &$GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['id_member'],
 			'exclude'                 => true,
 			'inputType'               => 'text',
-			'foreignKey'			  => 'tl_member.lastname',
+			'foreignKey'			  => 'tl_member.email',
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>255)
 		),
 		'pid' => array
@@ -127,13 +129,14 @@ $GLOBALS['TL_DCA']['tl_calendar_events_subscribe'] = array
 			'exclude'                 => true,
 			'inputType'               => 'select',
 //			'input_field_callback'    => array('ModuleEventSubscribe', 'getEventList'),
-//			'foreignKey'			  => 'tl_calendar_events.title',
+			'foreignKey'			  => 'tl_calendar_events.title',
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>255)
 		),
 		'ces_date' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['ces_date'],
 			'exclude'                 => true,
+			'filter'                  => true,
 			'inputType'               => 'text',
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>255)
 		),
