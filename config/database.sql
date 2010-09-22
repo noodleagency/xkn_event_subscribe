@@ -40,6 +40,7 @@ CREATE TABLE `tl_calendar_events` (
   `lastDate` varchar(10) NOT NULL default '',
   `formId` int(10) unsigned NOT NULL default '0',
   `formHeadline` varchar(255) NOT NULL default '',  
+  `sorting` int(10) unsigned NOT NULL default '0',
   `showFree` char(1) NOT NULL default '',
   `freeHeadline` varchar(255) NOT NULL default '',
   `max_register` int(10) unsigned NOT NULL default '0'

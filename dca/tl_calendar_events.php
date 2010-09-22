@@ -28,11 +28,12 @@
  * @filesource
  */
 
-
+//print_r($GLOBALS['TL_DCA']['tl_calendar_events']);
 
 /**
  * Table tl_calendar_events 
  */
+$GLOBALS['TL_DCA']['tl_calendar_events']['config']['ctable'][] = 'tl_calendar_events_subscribe';
 array_insert($GLOBALS['TL_DCA']['tl_calendar_events']['list']['operations'], 3, array
 	(
 			'group' => array
@@ -144,7 +145,18 @@ class tl_calendar_events_subscribe extends Backend {
 	 * Generate module
 	 */
 	public function __construct() {
-		
+		$this->Import("Database");		
+	}
+	
+	public function listSubscriber($arrRow) {
+		$time = time();
+		$sql = "SELECT * FROM tl_member WHERE id=?";
+		$usrData = $this->Database->prepare($sql)->execute($arrRow['id_member']);
+		$usr = $usrData->fetchAssoc();
+		return '
+		<div>'.date('d/m/Y', $arrRow['ces_date']).'</div>
+		<div>'.$usr['firstname'].' '.$usr['lastname'].'</div>
+		<div>'.$arrRow['ces_referer'].'</div>'. "\n";
 	}
 	
 	/**
