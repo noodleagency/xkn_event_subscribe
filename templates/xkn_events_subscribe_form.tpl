@@ -4,17 +4,17 @@
 
 <div class="introMondial">
 
-	<div id="subform<?php echo $this->id;?>" class="formMondial">
+	<div  class="formMondial">
 
 		<div class="formLeft">
 			<h2>Bénéficiez d'un accès
 			à la mezzanine SEAT</h2>
-			<p>En tant membre du Club, vous aurez le privilège d'accéder au coin VIP SEAT lors de votre passage au Mondial 2010.
+			<p>En tant Client membre du Club, vous aurez le privilège d'accéder à l'espace VIP SEAT lors de votre passage au Mondial 2010.
 			Pour en profiter, inscrivez-vous.</p>
 
 		</div><!-- fin left -->
 		
-		<div class="formRight">
+		<div class="formRight" id="subform<?php echo $this->id;?>">
 		
 			<form methode="post" id="formsub<?php echo $this->id;?>" name="formsub<?php echo $this->id;?>">
 				<p>Nom : <b><?php echo $this->lastname;?></b><br />
