@@ -88,11 +88,15 @@ class EventSubscribe extends Controller
 		$objGallery = $this->Database->prepare("SELECT * FROM tl_calendar_events WHERE id=?")
 										 ->limit(1)
 										 ->execute($this->xkn_event_sub_id);
-
 		$objTemplate = new FrontendTemplate($this->strTemplate);
 		$objTemplate->xkn_event_sub_id = $this->xkn_event_sub_id;
 		$tmp_data=$objGallery->fetchAssoc();
-			// creation de la liste des jours
+		$usr_data = $this->get_subscribtion($this->xkn_event_sub_id);
+		if($usr_data['ces_date']) {
+			$tmp_data['subscribed'] = 1;
+		}
+//		print_r($usr_data);
+		// creation de la liste des jours
 		$sub_day = array();
 		$subStartDate = date('d', $tmp_data['startDate']);
 		$subEndDate = date('d', $tmp_data['endDate']);
@@ -100,12 +104,28 @@ class EventSubscribe extends Controller
 			$sub_day[] = array('stamp'=>$j, 'label'=>date("j/m/Y", $j));
 		}
 		$tmp_data['sub_date'] = $sub_day;
+		$tmp_data['sel_date'] = $usr_data['ces_date'];
 		$tmp_data['firstname'] = $this->User->firstname;
 		$tmp_data['lastname'] = $this->User->lastname;
 		$objTemplate->setData($tmp_data);
 		
-		return $objTemplate->parse();
-		
+		return $objTemplate->parse();	
+	} // end loadForm
+
+	/**
+	 * verification si User deja inscrit a cet evenement
+	 * 
+	 * @param integer $id_event ID de l'evenement
+	 * @return boolean
+	 */
+	public function get_subscribtion($id_event=0) {
+		$this->import('FrontendUser', 'User');
+		$sql = "SELECT * ";
+		$sql .= "FROM tl_calendar_events_subscribe ";
+		$sql .= "WHERE id_member=? ";
+		$sql .= "AND pid=? ";
+		$event_usr = $this->Database->prepare($sql)->execute($this->User->id, $id_event);
+		return ($event_usr->fetchAssoc());
 	}
 }
 

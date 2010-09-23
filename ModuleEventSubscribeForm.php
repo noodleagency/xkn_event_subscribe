@@ -44,6 +44,11 @@ class ModuleEventSubscribeForm extends Module {
 	 */
 	protected $strTemplate = 'xkn_events_subscribe_form';
 
+	/**
+	 * Template
+	 * @var string
+	 */
+	protected $returnTemplate = 'xkn_events_subscribe_return';
 	
 	/**
 	 * Generate module
@@ -67,14 +72,36 @@ class ModuleEventSubscribeForm extends Module {
 	/**
 	 * Generate module
 	 */
-	public function generate() {		
+	public function generate() {	
 		$GLOBALS['TL_HEAD'][] = '<script type="text/javascript" src="system/modules/xkn_ajax/js/ajaxDispatcher.js"></script>';
-		// recup id de l'event
-		$tmp = new EventSubscribe($this->xkn_event_sub_id, $this->xkn_template);
-//		print_r($tmp);
-		return $tmp->loadForm();
+//		if($this->subscribed($this->xkn_event_sub_id)) {
+			// recup id de l'event
+//			$tmp = new EventSubscribe($this->xkn_event_sub_id, $this->returnTemplate);
+//			return $tmp->loadDate();	
+//		} else {
+			// recup id de l'event
+			$tmp = new EventSubscribe($this->xkn_event_sub_id, $this->xkn_template);
+			return $tmp->loadForm();	
+//		}
 	}
 
+	/**
+	 * verification si User deja inscrit a cet evenement
+	 * 
+	 * @param integer $id_event ID de l'evenement
+	 * @return boolean
+	 */
+	public function subscribed($id_event=0) {
+		$this->import('FrontendUser', 'User');
+		$sql = "SELECT id ";
+		$sql .= "FROM tl_calendar_events_subscribe ";
+		$sql .= "WHERE id_member=? ";
+//		$sql .= "AND ces_date=? ";
+		$sql .= "AND pid=? ";
+		$event_usr = $this->Database->prepare($sql)->execute($this->User->id, $id_event);
+		return ($event_usr->numRows>0);
+	} // end subscribed
+	
 }
 
 ?>

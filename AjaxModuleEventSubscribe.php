@@ -59,9 +59,9 @@ class AjaxModuleEventSubscribe extends Controller {
 		$sql = "SELECT id ";
 		$sql .= "FROM tl_calendar_events_subscribe ";
 		$sql .= "WHERE id_member=? ";
-		$sql .= "AND ces_date=? ";
+//		$sql .= "AND ces_date=? ";
 		$sql .= "AND pid=? ";
-		$event_usr = $this->Database->prepare($sql)->execute($this->User->id, $date, $id_event);
+		$event_usr = $this->Database->prepare($sql)->execute($this->User->id, $id_event); //$date, 
 		return ($event_usr->numRows>0);
 	}
 	

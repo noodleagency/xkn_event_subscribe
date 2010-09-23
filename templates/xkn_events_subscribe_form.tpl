@@ -19,6 +19,9 @@
 			<form methode="post" id="formsub<?php echo $this->id;?>" name="formsub<?php echo $this->id;?>">
 				<p>Nom : <b><?php echo $this->lastname;?></b><br />
 				Prénom : <b><?php echo $this->firstname;?></b></p>
+<?php
+if(!$this->subscribed) {
+?>
 
 				<p><label>Sélectionnez la date de votre passage au Mondial</label>
     				<select name="subdate" id="subdate" style="text-align:center;">
@@ -34,6 +37,13 @@ for($i=0; $i<count($this->sub_date); $i++) {
 	        	<input type="hidden" value="{{env::page_title}}" id="from" name="from" />	
 	        	<input type="hidden" value="<?php echo $this->id;?>" id="id_event" name="id_event" />	
 				<input type="submit" class="submit" name="subformbt<?php echo $this->id; ?>" id="subformbt<?php echo $this->id; ?>" />
+<?php
+} else {
+?>
+			<div>Vous êtes déjà inscrit pour le <?php echo date('d/m/Y');?></div>
+<?php
+}
+?>
 			</form>
 
 		</div><!-- fin formRight -->
