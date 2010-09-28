@@ -17,7 +17,9 @@ for($i=0; $i<count($this->sub_date); $i++) {
 }
 ?>
 	        		</select></p>
-	        	<input type="hidden" value="{{env::page_title}}" id="from" name="from" />	
+	        		<?php
+?>
+	        	<input type="hidden" value="{{env::page_title}} <?php echo $_SESSION['mondial_subscribe_from'];?>" id="from" name="from" />	
 	        	<input type="hidden" value="<?php echo $this->id;?>" id="id_event" name="id_event" />	
 				<input type="submit" class="submit" name="subformbt<?php echo $this->id; ?>" id="subformbt<?php echo $this->id; ?>" />
 <?php
@@ -76,3 +78,5 @@ window.addEvent("domready", function() {
 
 //--><!]]>
 </script> 
+
+<?php unset($_SESSION['mondial_subscribe_from']);?>
