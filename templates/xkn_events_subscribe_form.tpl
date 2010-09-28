@@ -25,7 +25,7 @@ if(!$this->subscribed) {
 
 				<p><label>Sélectionnez la date de votre passage au Mondial</label>
     				<select name="subdate" id="subdate" style="text-align:center;">
-    					<option value="0" style="text-align:center;"><?php echo $this->subselect_label;?></option>
+<!--    					<option value="0" style="text-align:center;"><?php echo $this->subselect_label;?></option> //-->
 <?php
 for($i=0; $i<count($this->sub_date); $i++) {
 ?>
