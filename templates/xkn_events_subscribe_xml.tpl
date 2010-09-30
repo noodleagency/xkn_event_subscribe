@@ -14,7 +14,7 @@ for($i=0; $i<count($this->sub); $i++) {
 			<email><?php echo $this->sub[$i]['email'];?></email>	
 			<present><?php echo $this->sub[$i]['present'];?></present>	
 			<from><?php echo $this->sub[$i]['referer'];?></from>	
-			<key><?php echo md5($this->sub[$i]['email'].'XXX'.$this->sub[$i]['date']);?></key>	
+			<key><?php echo md5($this->sub[$i]['email'].'XXX'.$this->sub[$i]['id']);?></key>	
 		</user>
 <?php 
 }

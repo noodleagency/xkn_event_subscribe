@@ -93,6 +93,7 @@ class ModuleEventSubscribeActive extends Module {
 	public function generate() {
 		$id = $this->Input->get('id');
 		$key = $this->Input->get('key');
+		$date = strtotime($this->Input->get('date'));
 		$present = $this->Input->get('present');
 		if(!$id || !$key || ($present!=0 && $present!=1)) {
 			// pas de parametres
@@ -102,15 +103,15 @@ class ModuleEventSubscribeActive extends Module {
 			$sql .= 'FROM `tl_calendar_events_subscribe` AS ces ';
 			$sql .= 'LEFT JOIN `tl_member` AS m ON ces.id_member=m.id ';
 			$sql .= 'WHERE ces.id_member=? ';
-			$sql .= 'AND MD5(CONCAT(email, \'XXX\', ces.ces_date))=? ';
+			$sql .= 'AND MD5(CONCAT(email, \'XXX\', ces.id))=? ';
 			$usrObj = $this->Database->prepare($sql)->execute($id, $key);
 			
 			$tmp_data=array();
 			if($usrObj->numRows==1) {
 				// si key ok > changement statut
 				$usrData = $usrObj->fetchAssoc();
-				$q = 'UPDATE tl_calendar_events_subscribe SET ces_present=? WHERE id=? ';
-				$usrSave = $this->Database->prepare($q)->execute($present, $usrData['id']);
+				$q = 'UPDATE tl_calendar_events_subscribe SET ces_date=?, ces_present=? WHERE id=? ';
+				$usrSave = $this->Database->prepare($q)->execute($date, $present, $usrData['id']);
 				$tmp_data['result'] = $usrSave->__get('affectedRows');
 			} else {
 				$tmp_data['result'] = 0;

@@ -1,0 +1,15 @@
+Version History
+
+	V1.3 <2010-09-30>
+	Gestion de la présence aux évènements (CRM) : possibilité de pointage à une autre date que celle sélectionnée.
+
+	V1.2 <2010-09-28>
+	Distinction de la provenance des inscriptions :
+	"Jeux Concours" uniquement pour les gagnants, "Mondial 2010" pour les autres
+
+	V1.1 <2010-09-28>
+	Blocage des inscriptions sans sélection d'une date.
+	
+	V1.0 <2010-09-23>
+	Gestion des inscriptions aux evenements.
+	Dépendant du module "Calendar".
