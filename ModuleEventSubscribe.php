@@ -79,7 +79,7 @@ class ModuleEventSubscribe extends BackendModule
 		$objEvt = $this->Database->prepare($sql)->execute();
 		$obj = array();
 		while($objEvt->next()) {
-			$obj[] = $objEvt->title;
+			$obj[$objEvt->id] = $objEvt->title;
 		}
 //		print_r($obj);
 		return $obj;
