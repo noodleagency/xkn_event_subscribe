@@ -119,8 +119,9 @@ $GLOBALS['TL_DCA']['tl_calendar_events_subscribe'] = array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['id_member'],
 			'exclude'                 => true,
+			'default'                 => '',
 			'inputType'               => 'text',
-			'foreignKey'			  => 'tl_member.email',
+//			'foreignKey'			  => 'tl_member.email',
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>255)
 		),
 		'pid' => array
