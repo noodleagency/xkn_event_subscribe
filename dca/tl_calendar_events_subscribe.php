@@ -71,13 +71,13 @@ $GLOBALS['TL_DCA']['tl_calendar_events_subscribe'] = array
 		),
 		'operations' => array
 		(
-/*			'edit' => array
+			'edit' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['edit'],
 				'href'                => 'act=edit',
 				'icon'                => 'edit.gif'
 			),
-			'copy' => array
+/*			'copy' => array
 			(
 				'label'               => &$GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['copy'],
 				'href'                => 'act=copy',
@@ -128,8 +128,8 @@ $GLOBALS['TL_DCA']['tl_calendar_events_subscribe'] = array
 			'label'                   => &$GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['pid'],
 			'exclude'                 => true,
 			'inputType'               => 'select',
-//			'input_field_callback'    => array('ModuleEventSubscribe', 'getEventList'),
-			'foreignKey'			  => 'tl_calendar_events.title',
+			'options_callback'    	  => array('ModuleEventSubscribe', 'getEventList'),
+//			'foreignKey'			  => 'tl_calendar_events.title',
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>255)
 		),
 		'ces_date' => array
@@ -138,14 +138,15 @@ $GLOBALS['TL_DCA']['tl_calendar_events_subscribe'] = array
 			'exclude'                 => true,
 			'filter'                  => true,
 			'inputType'               => 'text',
-			'eval'                    => array('mandatory'=>true, 'maxlength'=>255)
+			'eval'                    => array('rgxp'=>'datim', 'mandatory'=>true, 'maxlength'=>255)
 		),
 		'ces_present' => array
 		(
 			'label'                   => &$GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['ces_present'],
 			'exclude'                 => true,
-			'inputType'               => 'select',
-			'option'				  => array('0', '1'),
+			'inputType'               => 'radio',
+			'options'				  => array('0', '1'),
+			'reference'				  => &$GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['ces_present_label'],
 			'eval'                    => array('mandatory'=>true, 'maxlength'=>255)
 		)
 	)

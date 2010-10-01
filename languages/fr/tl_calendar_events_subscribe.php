@@ -39,6 +39,8 @@ $GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['id_member'] = array('User',
 $GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['ces_date'] = array('Date', '');
 $GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['ces_present'] = array('Présent', '');
 $GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['pid'] = array('Evènement', '');
+
+$GLOBALS['TL_LANG']['tl_calendar_events_subscribe']['ces_present_label'] = array('Non', 'Oui');
 /**
  * Reference
  */
