@@ -130,7 +130,7 @@ class ModuleEventSubscribeSEATForm extends Module {
 					$q = 'INSERT INTO tl_calendar_events_subscribe ';
 					$q .= '(tstamp, id_member, pid, ces_date, ces_referer, ces_present) ';
 					$q .= 'VALUES ';
-					$q .= '( ?, ?, ?, ?, ?) ';
+					$q .= '( ?, ?, ?, ?, ?, ?) ';
 					$usrSave = $this->Database->prepare($q)->execute(time(), $id, $id_event, $date, 'SEAT', $present);
 					$tmp_data['result'] = ($usrSave->__get('insertId')>0) ? 1 : 0;
 				}
