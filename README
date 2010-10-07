@@ -1,5 +1,8 @@
 Version History
 
+	V1.4 <2010-10-07>
+	Correction d'un bug sur l'affichage de la date sélectionnée.
+
 	V1.3 <2010-09-30>
 	Gestion de la présence aux évènements (CRM) : possibilité de pointage à une autre date que celle sélectionnée.
 

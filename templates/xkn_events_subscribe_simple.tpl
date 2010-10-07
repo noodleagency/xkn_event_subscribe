@@ -25,7 +25,7 @@ for($i=0; $i<count($this->sub_date); $i++) {
 <?php
 } else {
 ?>
-			<div>Vous êtes déjà inscrit pour le <?php echo date('d/m/Y');?></div>
+			<div>Vous êtes déjà inscrit pour le <?php echo date('d/m/Y', $this->sel_date);?></div>
 <?php
 }
 ?>
